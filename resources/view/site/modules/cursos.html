@@ -1,0 +1,66 @@
+<style>
+    /* Garante que o efeito de borda apareça no rodapé da div */
+    .overlay-bottom {
+        position: relative;
+    }
+    .overlay-bottom::after {
+        content: ""; /* Necessário para o elemento existir */
+        position: absolute;
+        width: 100%;
+        height: 80px; /* Altura da imagem da borda; ajuste se necessário */
+        bottom: 0;
+        left: 0;
+        background: url('{{URL}}/resources/assets/img/overlay-bottom.png') bottom center no-repeat !important;
+        background-size: cover !important; /* Faz a borda esticar por toda a largura */
+        z-index: 1;
+    }
+</style>
+
+<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" 
+style="margin-bottom: 90px; 
+background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url('{{URL}}/resources/assets/img/cursos-header.jpg') no-repeat center center; 
+background-size: cover;">
+
+<div class="container text-center py-5">
+   <h1 class="text-white display-1">Cursos</h1>
+   <div class="d-inline-flex text-white mb-5">
+       <p class="m-0 text-uppercase"><a class="text-white" href="{{URL}}/">Home</a></p>
+       <i class="fa fa-angle-double-right pt-1 px-3"></i>
+       <p class="m-0 text-uppercase">Cursos</p>
+   </div>
+
+   <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+   </div>
+</div>
+</div>
+
+
+
+<!-- Courses Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div id="ancora_curso" class="row mx-0 justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-title text-center position-relative mb-5">
+                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Nossos Cursos</h6>
+                    <h1 class="display-4">Confira Alguns de Nossos Cursos</h1>
+                </div>
+            </div>
+        </div>
+
+       
+           <div id="listar"></div>
+
+           <!-- PAGINAÇÃO -->
+        <div class="col-12">
+        <div id="pagination">
+        </div>  
+        </div>
+        <!-- PAGINAÇÃO -->
+
+       
+
+</div>
+</div>
+<!-- Courses End -->
+<script src="{{URL}}/resources/js/ajax/cursos.js"></script>

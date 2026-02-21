@@ -4,6 +4,31 @@ namespace App\Common\Helpers;
 
 class NumeroHelper {
 
+    /**
+ * Formata um número de celular ou telefone fixo
+ * Suporta 10 dígitos: (11) 4444-4444
+ * Suporta 11 dígitos: (15) 99846-4457
+ */
+public static function formatarTelefone($numero) {
+    // 1. Remove qualquer caractere que não seja número
+    $numero = preg_replace('/[^0-9]/', '', $numero);
+
+    // 2. Verifica a quantidade de dígitos
+    $tam = strlen($numero);
+
+    if ($tam === 11) {
+        // Formato Celular: (00) 00000-0000
+        return preg_replace('/(\d{2})(\d{5})(\d{4})/', '($1) $2-$3', $numero);
+    } elseif ($tam === 10) {
+        // Formato Fixo: (00) 0000-0000
+        return preg_replace('/(\d{2})(\d{4})(\d{4})/', '($1) $2-$3', $numero);
+    }
+
+    // Se não for 10 ou 11, retorna o original limpo (ou trate como erro)
+    return $numero;
+}
+
+
 public static function moedaBr($valor){
     return number_format($valor,2,",",".");
 }

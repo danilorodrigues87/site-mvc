@@ -1,0 +1,112 @@
+<style>
+    /* Garante que o efeito de borda apareça no rodapé da div */
+    .overlay-bottom {
+        position: relative;
+    }
+    .overlay-bottom::after {
+        content: ""; /* Necessário para o elemento existir */
+        position: absolute;
+        width: 100%;
+        height: 80px; /* Altura da imagem da borda; ajuste se necessário */
+        bottom: 0;
+        left: 0;
+        background: url('{{URL}}/resources/assets/img/overlay-bottom.png') bottom center no-repeat !important;
+        background-size: cover !important; /* Faz a borda esticar por toda a largura */
+        z-index: 1;
+    }
+</style>
+
+<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" 
+     style="margin-bottom: 90px; 
+            background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url('{{URL}}/resources/assets/img/page-header.jpg') no-repeat center center; 
+            background-size: cover;">
+   
+   <div class="container text-center py-5">
+       <h1 class="text-white display-1">Contato</h1>
+       <div class="d-inline-flex text-white mb-5">
+           <p class="m-0 text-uppercase"><a class="text-white" href="{{URL}}/">Home</a></p>
+           <i class="fa fa-angle-double-right pt-1 px-3"></i>
+           <p class="m-0 text-uppercase">Contato</p>
+       </div>
+       
+       <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+           </div>
+   </div>
+</div>
+
+
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="btn-icon bg-primary mr-4">
+                            <i class="fa fa-2x fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>Endereço</h4>
+                            <p class="m-0">Rua Dep. Cunha Bueno, 78 A Centro - Guapiara-SP</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="btn-icon bg-secondary mr-4">
+                            <i class="fa fa-2x fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>Whatsapp</h4>
+                            <p class="m-0">(15) 99671-2314</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="btn-icon bg-warning mr-4">
+                            <i class="fa fa-2x fa-envelope text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>Nosso Email</h4>
+                            <p class="m-0">contato@ctieducacional.com.br</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="section-title position-relative mb-4">
+                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Precisa de Ajuda?</h6>
+                    <h1 class="display-4">Nos Envie uma Mensagem</h1>
+                </div>
+                <div class="contact-form">
+                    <form id="contato-contact" method="post">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" id="c_nome" name="c_nome" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu nome" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="email" id="c_email" name="c_email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Email" required="required">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" id="c_whatsapp" name="c_whatsapp" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Whatsapp" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" id="assunto" name="assunto" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Assunto" required="required">
+                                </div>
+                            </div>
+ 
+                            <div class="form-group">
+                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" id="mensagem" name="mensagem" placeholder="Mensagem" required="required"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+<script src="{{URL}}/resources/js/ajax/contato.js"></script>

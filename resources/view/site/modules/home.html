@@ -147,96 +147,9 @@
             </div>
         </div>
         <div class="owl-carousel courses-carousel">
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/curso-1.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Desenvolvedor de Sistemas</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/curso-2.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Designer Gráfico</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/curso-3.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Desenvolvimento de Games 3D</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/curso-4.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Assistente Administrativo</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/cursos-5.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Marketing e Vendas</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{{URL}}/resources/assets/img/curso-6.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Atendente de Farmácia</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Danilo Rodrigues</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Detalhes do Curso</a>
-                    </div>
-                </div>
-            </div>
+
+            {{itens}}      
+          
         </div>
 
         <div class="row justify-content-center bg-image mx-0 mb-5" style="margin: 90px 0; 
@@ -246,31 +159,45 @@
             <div class="col-lg-6 py-5">
                 <div class="bg-white p-5 my-5">
                     <h1 class="text-center mb-4">30% de Desconto para Novos Alunos</h1>
-                    <form>
+                    <form id="pega_lead" method="post">
                         <div class="form-row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Seu nome" style="padding: 30px 20px;">
+                                    <input type="text" id="ld_nome" name="nome" class="form-control bg-light border-0" placeholder="Seu nome" style="padding: 30px 20px;">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Seu Email" style="padding: 30px 20px;">
+                                    <input type="email" id="ld_email" name="email" class="form-control bg-light border-0" placeholder="Seu Email" style="padding: 30px 20px;">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <select class="custom-select bg-light border-0 px-3" style="height: 60px;">
-                                        <option selected>Escolha um Curso</option>
-                                        <option value="1">Informática</option>
-                                        <option value="2">Desenvolvimento de Games 3D</option>
-                                        <option value="3">Designer Gráfico</option>
+                                    <select id="ld_curso" name="curso_pretendido" class="custom-select bg-light border-0 px-3" style="height: 60px;">
+                                        <option value="" >Escolha um Curso</option>
+                                        {{select-cursos}}
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select id="ld_ex_aluno" name="ex_aluno" class="custom-select bg-light border-0 px-3" style="height: 60px;">
+                                        <option value="" >Já estudou aqui?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input id="ld_whatsapp" type="text" name="whatsapp" class="form-control bg-light border-0" placeholder="Whatsapp" style="padding: 30px 20px;">
+                                </div>
+                            </div>
+                        <div class="col-sm-6">
                                 <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">Garantir Minha Vaga</button>
                             </div>
                         </div>
@@ -291,61 +218,42 @@
             </div>
             <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
                 <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/team-1.jpg" alt="">
+                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/danilo-foto.jpg" alt="">
                     <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
+                        <h5 class="mb-3">Danilo Rodrigues</h5>
+                        <p class="mb-2">Desenvolvedor Full-Steck</p>
                         <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/danilorodrigues.87"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.linkedin.com/in/danilorods87/"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/danilorod87/"><i class="fab fa-instagram"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.youtube.com/@danilorodrigues87"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/team-2.jpg" alt="">
+                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/lucieli-foto.jpg" alt="">
                     <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
+                        <h5 class="mb-3">Lucieli Ribeiro Rodrigues</h5>
+                        <p class="mb-2">Financeiro</p>
                         <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/Lucieli.ribe"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/lucieliribeirords/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/team-3.jpg" alt="">
+                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/donna-foto.jpg" alt="">
                     <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
+                        <h5 class="mb-3">Donna - Assistente IA</h5>
+                        <p class="mb-2">Comercial</p>
                         <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/ctieducacional/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/ctieducacional/"><i class="fab fa-instagram"></i></a>
+                            <a class="mx-1 p-1" target="_blank" href="https://www.youtube.com/@ctieducacional"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/team-4.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -440,20 +348,26 @@
                         <h1 class="display-4">Nos Envie uma Mensagem</h1>
                     </div>
                     <div class="contact-form">
-                        <form>
+                        <form id="contato-home" method="post">
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu nome" required="required">
+                                    <input type="text" id="c_nome" name="c_nome" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu nome" required="required">
                                 </div>
                                 <div class="col-6 form-group">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Email" required="required">
+                                    <input type="email" id="c_email" name="c_email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Email" required="required">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Assunto" required="required">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" id="c_whatsapp" name="c_whatsapp" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Whatsapp" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" id="assunto" name="assunto" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Assunto" required="required">
+                                </div>
                             </div>
+ 
                             <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" placeholder="Mensagem" required="required"></textarea>
+                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" id="mensagem" name="mensagem" placeholder="Mensagem" required="required"></textarea>
                             </div>
                             <div>
                                 <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
@@ -465,4 +379,4 @@
         </div>
     </div>
     <!-- Contact End -->
-
+<script src="{{URL}}/resources/js/ajax/home.js"></script>

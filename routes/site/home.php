@@ -3,7 +3,7 @@
 use \App\Http\Response;
 use \App\Controller\Site;
 
-//ROTA ADMIN
+//ROTA 
 $obRouter->get('/',[
 	'middlewares' => [
 		
@@ -14,12 +14,13 @@ $obRouter->get('/',[
 ]);
 
 
-//ROTA ADMIN
-$obRouter->get('/sobre',[
+
+//ROTA 
+$obRouter->post('/home-pega-lead',[
 	'middlewares' => [
 		
 	],
 	function($request){
-		return new Response(200,Site\About::index($request));
+		return new Response(200,Site\Home::getLead($request));
 	}
 ]);

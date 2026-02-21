@@ -71,8 +71,7 @@ class Page {
 
 
 
-
-	private static function getPaginationLink($postVars, $page, $label = null) {
+	private static function getPaginationLink($postVars, $page, $label, $reference) {
     // ALTERA A PÁGINA
     $postVars['page'] = $page['page'];
 
@@ -84,7 +83,7 @@ class Page {
 
     // VIEW
     $viewLink = '<li class="page-item ' . ($page['current'] ? 'active' : '') . '">
-        <a class="page-link" onclick="listar(' . $filtroJs . ',' . $postVars['page'] . ')" href="#">' . ($label ?? $page['page']) . '</a>
+        <a class="page-link" onclick="' .$reference. '(' . $filtroJs . ',' . $postVars['page'] . ', true)" href="#">' . ($label ?? $page['page']) . '</a>
     </li>';
     return $viewLink;
 }
@@ -92,9 +91,10 @@ class Page {
 
 
 // RENDERIZA O LAYOUT DE PAGINAÇÃO
-	public static function getPagination($request, $obPagination) {
+	public static function getPagination($request, $obPagination, $reference) {
     // PÁGINAS
 		$pages = $obPagination->getPages();
+
 
     // VERIFICA A QUANTIDADE DE PÁGINAS
 		if (count($pages) <= 1) return '';
@@ -128,7 +128,7 @@ class Page {
 
     // LINK INICIAL
 		if ($start > 0) {
-			$links .= self::getPaginationLink($postVars, reset($pages), '<<');
+			$links .= self::getPaginationLink($postVars, reset($pages), '<<', $reference);
 		}
 
     // RENDERIZA OS ITENS
@@ -138,11 +138,11 @@ class Page {
 
         // VERIFICA O LIMITE DA PAGINAÇÃO
 			if ($page['page'] > $limit) {
-				$links .= self::getPaginationLink($postVars, end($pages), '>>');
+				$links .= self::getPaginationLink($postVars, end($pages), '>>', $reference);
 				break;
 			}
 
-			$links .= self::getPaginationLink($postVars, $page);
+			$links .= self::getPaginationLink($postVars, $page,null , $reference);
 		}
 
     // RENDERIZAÇÃO BOX DE PAGINAÇÃO

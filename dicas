@@ -38,3 +38,16 @@ O Arquivo .gitignore: É fundamental para o seu projeto PHP. Nele, você deve co
 Remover algo do GitHub sem apagar do PC: Se você subiu o .env sem querer, use:
 
 git rm --cached .env
+
+
+
+// SWEET ALERT
+
+Swal.fire()
+// Exemplo básico de sucesso
+  Swal.fire({
+    title: 'Bom trabalho!',
+    text: 'O membro foi cadastrado com sucesso.',
+    icon: 'success',
+    confirmButtonText: 'Entendido'
+  });

@@ -21,35 +21,35 @@
     <link href="{{URL}}/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{URL}}/resources/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
-<body>
+<body data-base-url="{{URL}}">
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark">
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <small><i class="fa fa-phone-alt mr-2"></i>(15) 99671-2314</small>
                     <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                    <small><i class="fa fa-envelope mr-2"></i>contato@ctieducacional.com.br</small>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-2" href="">
+                    <a class="text-white px-2" target="_blank" href="https://www.facebook.com/ctieducacional">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
+                    <a class="text-white px-2" target="_blank" href="https://www.linkedin.com/in/danilorods87/">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="text-white px-2" href="">
+                    <a class="text-white px-2" target="_blank" href="https://www.instagram.com/ctieducacional">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-white pl-2" href="">
+                    <a class="text-white pl-2" target="_blank" href="https://www.youtube.com/@ctieducacional">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -81,43 +81,93 @@
             z-index: 1;
         }
     </style>
-    
-    <div class="container-fluid bg-dark text-white-50 py-5 overlay-top" style="margin-top: 90px;">
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
         <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col-md-6 mb-5">
                     <a href="index.html" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>CTI Educacional</h1>
+                        <h2 class="mt-n2 text-uppercase text-white d-flex align-items-center">
+                            <img src="{{URL}}/resources/assets/img/icons/logo2.webp" alt="Logo CTI" style="height: 45px;" class="mr-3">
+                           Educacional
+                        </h2>
                     </a>
                     <p class="m-0">Referência em cursos profissionalizantes e tecnologia. Localizado no coração de Guapiara, o CTI Educacional oferece as melhores soluções em ensino presencial e à distância para alunos de todas as idades.</p>
                 </div>
                 <div class="col-md-6 mb-5">
                     <h3 class="text-white mb-4">Receber Novidades</h3>
                     <div class="w-100">
+                        <form id="assiante-news" method="post">
                         <div class="input-group">
-                            <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Seu Email">
+                            <input type="email" name="email" id="email" class="form-control border-light" style="padding: 30px;" placeholder="Seu Email">
                             <div class="input-group-append">
-                                <button class="btn btn-primary px-4">Assinar</button>
+                                <button type="submit" class="btn btn-primary px-4">Assinar</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-5">
                     <h3 class="text-white mb-4">Venha Conhecer</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"></i>Rua Dep. Cunha Bueno, 78 A, Centro Guapiara-SP</p>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Rua Dep. Cunha Bueno, 78 A Centro, Guapiara-SP</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>(15) 99671-2314</p>
+                    <p><i class="fa fa-envelope mr-2"></i>contato@ctieducacional.com.br</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
+                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
                     </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Cursos Populares</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Informática</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing e Vendas</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Desenvolvimento de Games 3D</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Atendente de Farmácia</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Serviços e Parcerias</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Polo Unifatecie</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Grduação EAD</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Pós Graduação EAD</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Soluções de Tecnologicas</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contato</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">CTI Educacional</a>. Todos os Direitos Reservados.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Desenvolvido por <a class="text-white" target="_blank" href="https://www.facebook.com/danilorodrigues.87/">Danilo Rodrigues</a> Oferecimento <a href="{{URL}}/" target="_blank">CTI Solutions</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
 
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
-    <!-- JavaScript Libraries -->
+        <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
@@ -128,6 +178,8 @@
 
     <!-- Template Javascript -->
     <script src="{{URL}}/resources/js/main.js"></script>
+    <script src="{{URL}}/resources/js/ajax/main.js"></script>
+
 </body>
 
 </html>

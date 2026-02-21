@@ -27,7 +27,6 @@ class Email {
 
     // REMETENTE
     const FROM_EMAIL = SMTP_FROM_EMAIL;
-    const FROM_NAME  = SMTP_FROM_NAME;
 
     private $error;
 
@@ -39,6 +38,7 @@ class Email {
         $addresses,
         $subject,
         $body,
+        $fromName,
         $attachments = [],
         $ccs = [],
         $bccs = []
@@ -58,7 +58,7 @@ class Email {
             $mail->CharSet    = self::CHARSET;
             $mail->Encoding   = 'base64';
 
-            $mail->setFrom(self::FROM_EMAIL, self::FROM_NAME);
+            $mail->setFrom(self::FROM_EMAIL, $fromName);
 
             foreach ((array)$addresses as $address) {
                 if (!empty($address)) {
