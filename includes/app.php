@@ -15,6 +15,7 @@ Environment::load(__DIR__.'/../');
 
 //DEFINE A CONSTANTE DE URL
 define('URL', getenv('URL'));
+define('URL_IMG', getenv('URL_IMG'));
 define('SITE', getenv('SITE'));
 define('TIMEZONE', getenv('TIMEZONE'));
 date_default_timezone_set(TIMEZONE);
@@ -25,7 +26,8 @@ define('SYSTEM_TOKEN', getenv('SYSTEM_TOKEN'));
 
 //DEFINE O VALOR PADRÃO DAS VARIAVEIS
 View::init([
-'URL' => URL
+'URL' => URL,
+'URL_IMG' => URL_IMG
 ]);
 
 //DEFINE O MAPEAMENTO DE MIDDLEWARES

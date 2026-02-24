@@ -7,9 +7,7 @@ use \App\Common\Helpers\NumeroHelper;
 
 class CoursesDetails extends Page{
 
-
 	//RETORNA A RENDERIZAÇÃO DA PÁGINA
-	
 	public static function getDetails($request, $id) {
 
 		$dados = self::getCoursesDetails($id);
@@ -28,7 +26,7 @@ class CoursesDetails extends Page{
 			'carga_h' => $dados['carga_h'] ?? '0',
 			'descricao' => $dados['descricao'] ?? 'Sem informação',
 			'valor_mensal' => NumeroHelper::moedaBr($dados['valor_mensal']?? 0),
-			'img' => $dados['img']?? 'header.jpg',
+			'img' => $dados['img'] ?? 'header.jpg',
 			'cursos' => self::getTrilhaItens()
 
 		]);
@@ -82,7 +80,7 @@ class CoursesDetails extends Page{
 
 			$itens .= '
 			<a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="'.URL.'/detalhes-curso/'.$obDados->id.'">
-			<img class="img-fluid" src="'.URL.'/resources/assets/img/'.$img.'" alt="'.$nome.'">
+			<img class="img-fluid" src="'.URL_IMG.'/uploads/img/site/curso/'.$img.'" alt="'.$nome.'">
 			<div class="courses-text">
 			<h4 class="text-center text-white px-3">'.$nome.'</h4>
 			<div class="border-top w-100 mt-3">
