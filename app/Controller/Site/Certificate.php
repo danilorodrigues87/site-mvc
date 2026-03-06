@@ -44,12 +44,14 @@ class Certificate extends Page{
 
 	public static function getCertificado($request){
     $queryParams = $request->getQueryParams();
-    $codigo = $queryParams['cert'] ?? '';
+    $codigo = $queryParams['crt'] ?? '';
 
     // Verifica se o código foi passado
     if(empty($codigo)){
         return ['erro' => true];
     }
+
+
 
     // Busca o certificado no banco MySQL
     $obCertificado = EntityCertificate::getCertificadoByCode($codigo);
