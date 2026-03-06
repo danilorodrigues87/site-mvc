@@ -124,13 +124,13 @@ background-attachment: fixed;">
             navigator.share({
                 title: 'Meu Certificado - CTI Educacional',
                 text: 'Confira minha nova conquista no CTI Educacional!',
-            url: urlBase+'/certificado?cert='+codigo, // Aqui você trocará pelo link real do certificado
+            url: urlBase+'/certificado?crt='+codigo, // Aqui você trocará pelo link real do certificado
         })
             .then(() => console.log('Compartilhado com sucesso'))
             .catch((error) => console.log('Erro ao compartilhar', error));
         } else {
         // Caso o navegador não suporte, abre o link em uma nova aba
-            window.open(urlBase+'/certificado?cert='+codigo, '_blank');
+            window.open(urlBase+'/certificado?crt='+codigo, '_blank');
         }
     }
 </script>
