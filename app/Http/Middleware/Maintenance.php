@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Common\Environment;
+
 class Maintenance{
 
 	//EXECUTA O MIDDLEWARE
