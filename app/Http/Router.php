@@ -198,12 +198,9 @@ class Router{
 	}
 
 	//REDIRECIONA A URL
-	public function redirect($route){
-		//URL
+	public function redirect($route, $httpCode = 302){
 		$url = $this->url.$route;
-	
-		//EXECUTA O DIRECT
-		header('location: '.$url);
+		header('Location: '.$url, true, (int)$httpCode);
 		exit;
 	}
 

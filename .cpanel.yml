@@ -5,4 +5,5 @@ deployment:
     # cp * NÃO copia dotfiles (.htaccess) — por isso as rotas quebravam em produção
     - /bin/cp -R * $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/tools
     - cd $DEPLOYPATH && (/usr/local/bin/composer install --no-dev --optimize-autoloader 2>/dev/null || composer install --no-dev --optimize-autoloader 2>/dev/null || true)

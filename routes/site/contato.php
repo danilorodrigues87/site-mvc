@@ -25,12 +25,15 @@ $obRouter->post('/contato/envia-mensagem',[
 	}
 ]);
 
-//ROTA ASSIANTURA DE NOTICIAS E NOVIDADES
+//ROTA ASSINATURA DE NOTÍCIAS — desativada (sem formulário no site B2B)
 $obRouter->post('/contato/assinatura',[
 	'middlewares' => [
 		
 	],
 	function($request){
-		return new Response(200,Site\Contact::assinarNews($request));
+		return new Response(404, [
+			'success' => false,
+			'message' => 'Serviço indisponível.',
+		], 'application/json');
 	}
 ]);

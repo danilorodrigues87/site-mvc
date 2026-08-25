@@ -1,26 +1,21 @@
 <?php
 
 use \App\Http\Response;
-use \App\Controller\Site;
 
-
-//ROTA SOBRE
-$obRouter->get('/cursos',[
-	'middlewares' => [
-		
-	],
-	function($request){
-		return new Response(200,Site\Courses::index($request));
-	}
+// Legado B2C — redireciona para catálogo CTI (B2B)
+$obRouter->get('/cursos', [
+	'middlewares' => [],
+	function ($request) {
+		$request->getRouter()->redirect('/solucoes/catalogo-cti', 301);
+	},
 ]);
 
-//ROTA SOBRE
-$obRouter->post('/cursos',[
-	'middlewares' => [
-		
-	],
-	function($request){
-		return new Response(200,Site\Courses::getInfo($request));
-	}
+$obRouter->post('/cursos', [
+	'middlewares' => [],
+	function ($request) {
+		return new Response(410, [
+			'success' => false,
+			'message' => 'Esta rota foi descontinuada. Acesse /solucoes/catalogo-cti',
+		], 'application/json');
+	},
 ]);
-

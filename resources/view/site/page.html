@@ -15,21 +15,16 @@
     <link href="{{URL}}/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="{{URL}}/resources/css/style.css" rel="stylesheet">
     <style>
-        /* Overlays e bg-image — paths absolutos (assets/img) */
         .overlay-top::before {
             top: 0;
-            background: url('{{URL}}/resources/assets/img/overlay-top.png') top center no-repeat !important;
-            background-size: cover !important;
+            {{css_overlay_top}}
         }
         .overlay-bottom::after {
             bottom: 0;
-            background: url('{{URL}}/resources/assets/img/overlay-bottom.png') bottom center no-repeat !important;
-            background-size: cover !important;
+            {{css_overlay_bottom}}
         }
         .bg-image {
-            background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url('{{URL}}/resources/assets/img/bg-image.jpg') center center no-repeat !important;
-            background-size: cover !important;
-            background-attachment: fixed;
+            background: {{css_bg_image}}
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

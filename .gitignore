@@ -1,7 +1,12 @@
 .env
 /vendor/
 .cursor/
+# Ignora uploads gerados; arquivos de tema em _defaults/ podem ser versionados
 resources/assets/img/*
+!resources/assets/img/.gitkeep
+!resources/assets/img/_defaults/
+!resources/assets/img/_defaults/**
 *.log
 storage/logs/*
 !storage/logs/.gitkeep
+tools/

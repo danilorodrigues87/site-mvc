@@ -56,6 +56,7 @@ class SiteBrandingHelper {
 	public static function ensureBrandAssets(): void {
 		$root = dirname(__DIR__, 3);
 		$destDir = $root.'/resources/assets/img';
+		$defaultsDir = $destDir.'/_defaults';
 		$iconsDir = dirname($root).DIRECTORY_SEPARATOR.'painel-cti/resources/assets/img/icons';
 
 		if (!is_dir($destDir)) {
@@ -69,18 +70,67 @@ class SiteBrandingHelper {
 		];
 
 		foreach ($items as $destName => $candidates) {
-			$dest = $destDir.'/'.$destName;
-			if (is_file($dest)) {
+			self::copyFirstReadable($destDir.'/'.$destName, self::candidatePaths($candidates, $iconsDir, $defaultsDir));
+		}
+
+		$themeImages = [
+			'carousel-1.jpg',
+			'sobre.jpg',
+			'bg-image.jpg',
+			'overlay-top.png',
+			'overlay-bottom.png',
+		];
+
+		foreach ($themeImages as $fileName) {
+			self::copyFirstReadable(
+				$destDir.'/'.$fileName,
+				self::candidatePaths([$fileName], $defaultsDir, $defaultsDir)
+			);
+		}
+	}
+
+	/** @param list<string> $relativeNames */
+	private static function candidatePaths(array $relativeNames, string ...$baseDirs): array {
+		$paths = [];
+		foreach ($baseDirs as $baseDir) {
+			if ($baseDir === '' || !is_dir($baseDir)) {
 				continue;
 			}
-			foreach ($candidates as $candidate) {
-				$src = $iconsDir.'/'.$candidate;
-				if (is_readable($src)) {
-					@copy($src, $dest);
-					break;
-				}
+			foreach ($relativeNames as $name) {
+				$paths[] = rtrim($baseDir, '/\\').'/'.$name;
 			}
 		}
+		return $paths;
+	}
+
+	/** @param list<string> $sources */
+	private static function copyFirstReadable(string $dest, array $sources): void {
+		if (is_file($dest)) {
+			return;
+		}
+		foreach ($sources as $src) {
+			if (is_readable($src)) {
+				@copy($src, $dest);
+				break;
+			}
+		}
+	}
+
+	public static function themeImageUrl(string $fileName): string {
+		$root = dirname(__DIR__, 3);
+		$localFs = $root.'/resources/assets/img/'.$fileName;
+		if (is_file($localFs)) {
+			return rtrim((string)URL, '/').'/resources/assets/img/'.$fileName;
+		}
+		return '';
+	}
+
+	private static function themeBackgroundCss(string $fileName, string $gradient): string {
+		$url = self::themeImageUrl($fileName);
+		if ($url === '') {
+			return $gradient.';';
+		}
+		return $gradient.", url('".$url."') center center no-repeat;";
 	}
 
 	private static function resolveAssetUrl(string $localName, string $painelIcon): string {
@@ -130,7 +180,7 @@ class SiteBrandingHelper {
 		$logoLight = self::fixedLogoLightUrl();
 		$logoDark = self::fixedLogoDarkUrl();
 		$favicon = self::fixedFaviconUrl();
-		$hero = $b['heroImageUrl'] ?: $base.'/resources/assets/img/carousel-1.jpg';
+		$hero = $b['heroImageUrl'] ?: self::themeImageUrl('carousel-1.jpg');
 		$ctaLink = $b['heroCtaLink'] ?? '/contato';
 		if ($ctaLink !== '' && $ctaLink[0] === '/') {
 			$ctaLink = $base.$ctaLink;
@@ -153,7 +203,37 @@ class SiteBrandingHelper {
 			'logo_light_url'        => htmlspecialchars($logoLight, ENT_QUOTES, 'UTF-8'),
 			'logo_dark_url'         => htmlspecialchars($logoDark, ENT_QUOTES, 'UTF-8'),
 			'favicon_url'           => htmlspecialchars($favicon, ENT_QUOTES, 'UTF-8'),
-			'hero_image_url'        => htmlspecialchars($hero, ENT_QUOTES, 'UTF-8'),
+			'hero_image_url'        => $hero !== '' ? htmlspecialchars($hero, ENT_QUOTES, 'UTF-8') : '',
+			'sobre_image_url'       => htmlspecialchars(self::themeImageUrl('sobre.jpg') ?: $hero, ENT_QUOTES, 'UTF-8'),
+			'css_overlay_top'       => htmlspecialchars(
+				self::themeImageUrl('overlay-top.png') !== ''
+					? "background: url('".self::themeImageUrl('overlay-top.png')."') top center no-repeat; background-size: cover;"
+					: 'background: transparent;',
+				ENT_QUOTES,
+				'UTF-8'
+			),
+			'css_overlay_bottom'    => htmlspecialchars(
+				self::themeImageUrl('overlay-bottom.png') !== ''
+					? "background: url('".self::themeImageUrl('overlay-bottom.png')."') bottom center no-repeat; background-size: cover;"
+					: 'background: transparent;',
+				ENT_QUOTES,
+				'UTF-8'
+			),
+			'css_bg_image'          => htmlspecialchars(
+				self::themeBackgroundCss(
+					'bg-image.jpg',
+					'linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05))'
+				).' background-size: cover; background-attachment: fixed;',
+				ENT_QUOTES,
+				'UTF-8'
+			),
+			'css_hero_background'   => htmlspecialchars(
+				$hero !== ''
+					? "linear-gradient(rgba(40, 120, 235, 0.88), rgba(40, 120, 235, 0.88)), url('".$hero."') center center; background-size: cover;"
+					: 'linear-gradient(rgba(40, 120, 235, 0.88), rgba(40, 120, 235, 0.88));',
+				ENT_QUOTES,
+				'UTF-8'
+			),
 			'telefone'              => htmlspecialchars((string)$b['telefone'], ENT_QUOTES, 'UTF-8'),
 			'email'                 => htmlspecialchars((string)$b['email'], ENT_QUOTES, 'UTF-8'),
 			'whatsapp_link'         => htmlspecialchars($waLink, ENT_QUOTES, 'UTF-8'),
