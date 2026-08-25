@@ -5,12 +5,15 @@ use \App\Common\Environment;
 use \PDO;
 use \PDOException;
 
-Environment::load(__DIR__);
+// Raiz do projeto: app/Model/Db → ../../../
+Environment::load(dirname(__DIR__, 3));
 
-define('DB_HOST', getenv('DB_HOST'));
-define('DB_NAME', getenv('DB_NAME'));
-define('DB_USER', getenv('DB_USER'));
-define('DB_PASS', getenv('DB_PASS'));
+if (!defined('DB_HOST')) {
+	define('DB_HOST', (string)Environment::get('DB_HOST', 'localhost'));
+	define('DB_NAME', (string)Environment::get('DB_NAME', ''));
+	define('DB_USER', (string)Environment::get('DB_USER', ''));
+	define('DB_PASS', (string)Environment::get('DB_PASS', ''));
+}
 
 class Database{
 

@@ -1,160 +1,134 @@
-<?php 
+<?php
 namespace App\Controller\Site;
 use \App\Utils\View;
+use \App\Common\Helpers\SiteBrandingHelper;
 
 class Page {
 
+	private static $modules = [
+		'home' => [
+			'label' => 'Home',
+			'link' => URL
+		],
+		'solucoes' => [
+			'label' => 'Soluções',
+			'link' => URL.'/solucoes'
+		],
+		'plataforma' => [
+			'label' => 'Plataforma',
+			'link' => URL.'/plataforma'
+		],
+		'planos' => [
+			'label' => 'Planos',
+			'link' => URL.'/planos'
+		],
+		'escola_modelo' => [
+			'label' => 'Escola modelo',
+			'link' => URL.'/escola-modelo'
+		],
+		'sobre' => [
+			'label' => 'Sobre',
+			'link' => URL.'/sobre'
+		],
+		'contato' => [
+			'label' => 'Contato',
+			'link' => URL.'/contato'
+		]
+	];
 
-    // PAGINAS DISPONIVEIS
-    private static $modules = [
-        'home' => [
-            'label' => 'Home',
-            'link' => URL
-        ],
-        'sobre' => [
-            'label' => 'Sobre',
-            'link' => URL.'/sobre'
-        ],
-        'cursos' => [
-            'label' => 'Cursos',
-            'link' => URL.'/cursos'
-        ],
-        'contato' => [
-            'label' => 'Contato',
-            'link' => URL.'/contato'
-        ]
-
-    ];
-
-
-    public static function getMenu($currentModule){
-      // LINKS DO MENU
-      $links = '';
-  
-      // ITERA OS MODULOS
-      foreach(self::$modules as $hash => $module){
-          $links .= View::render('site/menu/link', [
-              'label'   => $module['label'],
-              'link'    => $module['link'],
-              'current' => $hash == $currentModule ? 'active' : '' 
-          ]); 
-      }
-  
-      // RETORNA A RENDERIZAÇÃO DO BOX (FORA DO LOOP)
-      return View::render('site/menu/box', [
-          'links' => $links
-      ]);
-  }
-
-
-	// RETORNA O CONTEUDO (VIEW) ESTRUTURA GENERICA PAGINA
-	public static function getPage($title,$content){
-		return View::render('site/page',[
-			'title' => $title,
-			'content' => $content
-		]);
+	private static function isMenuActive($hash, $currentModule){
+		if ($hash === $currentModule) {
+			return true;
+		}
+		if ($hash === 'solucoes' && strpos((string)$currentModule, 'solucoes') === 0) {
+			return true;
+		}
+		return false;
 	}
 
-    //RENDERIZA A VIEW DO PANEL
-  public static function getPanel($title,$content,$currentModule){
+	public static function getMenu($currentModule){
+		$links = '';
+		$branding = SiteBrandingHelper::viewVars();
 
-    //RENDERIZA A VIEW DO TOP - MENU
-    $contentPanel = View::render('site/panel',[
-      'menu' => self::getMenu($currentModule),
-      'content' => $content
-    ]);
+		foreach(self::$modules as $hash => $module){
+			$links .= View::render('site/menu/link', [
+				'label'   => $module['label'],
+				'link'    => $module['link'],
+				'current' => self::isMenuActive($hash, $currentModule) ? 'active' : ''
+			]);
+		}
 
-    //RETONA A PAGINA RENDERIZADA
-    return self::getPage($title,$contentPanel);
+		return View::render('site/menu/box', array_merge($branding, [
+			'links' => $links
+		]));
+	}
 
-  }
+	public static function brandingVars(){
+		return SiteBrandingHelper::viewVars();
+	}
 
+	public static function getPage($title, $content, $metaTitle = null, $metaDescription = null){
+		$branding = SiteBrandingHelper::viewVars();
+		return View::render('site/page', array_merge($branding, [
+			'title' => $title,
+			'content' => $content,
+			'meta_title' => $metaTitle ?: $branding['meta_title'],
+			'meta_description' => $metaDescription ?: $branding['meta_description'],
+		]));
+	}
 
+	public static function getPanel($title, $content, $currentModule, $metaTitle = null, $metaDescription = null){
+		$contentPanel = View::render('site/panel',[
+			'menu' => self::getMenu($currentModule),
+			'content' => $content
+		]);
+		return self::getPage($title, $contentPanel, $metaTitle, $metaDescription);
+	}
+
+	public static function getCertPage($title, $content){
+		$branding = SiteBrandingHelper::viewVars();
+		$html = View::render('site/modules/certificado-wrap', ['content' => $content]);
+		return View::render('site/page-certificado', array_merge($branding, [
+			'title' => $title,
+			'content' => $html,
+		]));
+	}
 
 	private static function getPaginationLink($postVars, $page, $label, $reference) {
-    // ALTERA A PÁGINA
-    $postVars['page'] = $page['page'];
+		$postVars['page'] = $page['page'];
+		$filtro = isset($postVars['filtro']) ? $postVars['filtro'] : null;
+		$filtroJs = $filtro !== null ? "'$filtro'" : 'null';
+		$viewLink = '<li class="page-item ' . ($page['current'] ? 'active' : '') . '">
+			<a class="page-link" onclick="' .$reference. '(' . $filtroJs . ',' . $postVars['page'] . ', true)" href="#">' . ($label ?? $page['page']) . '</a>
+		</li>';
+		return $viewLink;
+	}
 
-     // Obtém o filtro, se existir
-    $filtro = isset($postVars['filtro']) ? $postVars['filtro'] : null;
-
-    // Garante que o filtro seja passado corretamente como string
-    $filtroJs = $filtro !== null ? "'$filtro'" : 'null';
-
-    // VIEW
-    $viewLink = '<li class="page-item ' . ($page['current'] ? 'active' : '') . '">
-        <a class="page-link" onclick="' .$reference. '(' . $filtroJs . ',' . $postVars['page'] . ', true)" href="#">' . ($label ?? $page['page']) . '</a>
-    </li>';
-    return $viewLink;
-}
-
-
-
-// RENDERIZA O LAYOUT DE PAGINAÇÃO
 	public static function getPagination($request, $obPagination, $reference) {
-    // PÁGINAS
 		$pages = $obPagination->getPages();
-
-
-    // VERIFICA A QUANTIDADE DE PÁGINAS
 		if (count($pages) <= 1) return '';
-
-    // POST
 		$postVars = $request->getPostVars();
-
-    // PÁGINA ATUAL
 		$currentPage = $postVars['page'] ?? 1;
-
-    // LIMITE DE PÁGINA
 		$limit = getenv('PAGINATION_LIMIT');
-
-    // MEIO DA PAGINAÇÃO
 		$middle = ceil($limit/2);
-
-    // INÍCIO DA PAGINAÇÃO
 		$start = $middle > $currentPage ? 0 : $currentPage - $middle;
-
-    // AJUSTA O FINAL DA PAGINAÇÃO
 		$limit = $limit + $start;
-
-    // AJUSTA O INÍCIO DA PAGINAÇÃO
 		if ($limit > count($pages)) {
 			$diff = $limit - count($pages);
 			$start = $start - $diff;
 		}
-
-    // LINKS DE PAGINAÇÃO
 		$links = '';
-
-    // LINK INICIAL
 		if ($start > 0) {
 			$links .= self::getPaginationLink($postVars, reset($pages), '<<', $reference);
 		}
-
-    // RENDERIZA OS ITENS
 		foreach ($pages as $page) {
-        // VERIFICA O START DA PAGINAÇÃO
 			if ($page['page'] <= $start) continue;
-
-        // VERIFICA O LIMITE DA PAGINAÇÃO
 			if ($page['page'] > $limit) {
 				$links .= self::getPaginationLink($postVars, end($pages), '>>', $reference);
 				break;
 			}
-
-			$links .= self::getPaginationLink($postVars, $page,null , $reference);
+			$links .= self::getPaginationLink($postVars, $page, null, $reference);
 		}
-
-    // RENDERIZAÇÃO BOX DE PAGINAÇÃO
-		$paginacao = 
-		'<nav>
-		<ul class="pagination">
-		' . $links . '        
-		</ul>
-		</nav>';
-
-		return $paginacao;
+		return '<nav><ul class="pagination">'.$links.'</ul></nav>';
 	}
-
-
 }

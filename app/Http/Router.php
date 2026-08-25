@@ -7,6 +7,7 @@ use \Exception;
 use \ReflectionFunction;
 use \App\Http\Middleware\Queue as MiddlewareQueue;
 use \App\Utils\View;
+use \App\Common\Helpers\SiteBrandingHelper;
 
 
 class Router{
@@ -133,13 +134,13 @@ class Router{
 				}
 
 				//MÉTODO NÃO PERMITIDO
-				throw new Exception(View::render('erros/405',[]), 405);
+				throw new Exception(View::render('erros/405', SiteBrandingHelper::assetViewVars()), 405);
 
 			}
 		}
 
 		//URL NÃO ENCONTRADA
-		throw new Exception(View::render('erros/404',[]), 404);
+		throw new Exception(View::render('erros/404', SiteBrandingHelper::assetViewVars()), 404);
 
 	}
 
@@ -154,7 +155,7 @@ class Router{
 		
 		//VERIFICA O CONTROLADOR - A URL não pôde ser processada
 			if(!isset($route['controller'])){
-				throw new Exception(View::render('erros/405',[]), 500);
+				throw new Exception(View::render('erros/405', SiteBrandingHelper::assetViewVars()), 500);
 
 			}
 

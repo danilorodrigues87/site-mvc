@@ -37,8 +37,8 @@ class Certificate extends Page{
 
 		]);
 
-		// RETORNA A PÁGINA COMPLETA
-        return parent::getPanel('Certificado', $content, 'certificado',$request);
+		// RETORNA A PÁGINA COMPLETA (layout minimal — contrato /certificado?crt=)
+        return parent::getCertPage('Certificado', $content);
 
 	}
 

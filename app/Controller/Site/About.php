@@ -1,19 +1,12 @@
 <?php
 namespace App\Controller\Site;
 use \App\Utils\View;
+use \App\Common\Helpers\SiteBrandingHelper;
 
-class About extends Page{
+class About extends Page {
 
-
-	//RETORNA A RENDERIZAÇÃO DA PÁGINA
 	public static function index($request){
-
-		// RETORNA A BASE DA PAGINA
-		$content = View::render('site/modules/sobre',[]);
-
-		// RETORNA A PÁGINA COMPLETA
-        return parent::getPanel('Sobre', $content, 'sobre',$request);
-
+		$content = View::render('site/modules/sobre', SiteBrandingHelper::viewVars());
+		return parent::getPanel('Sobre', $content, 'sobre');
 	}
-
 }

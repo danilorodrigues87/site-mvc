@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}} — CTI Educacional</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="{{favicon_url}}" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="{{favicon_url}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{{URL}}/resources/css/style.css" rel="stylesheet">
+</head>
+<body data-base-url="{{URL}}">
+    <header class="container-fluid bg-white border-bottom py-3 px-lg-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{{URL}}/" class="d-flex align-items-center text-decoration-none">
+                <img src="{{logo_light_url}}" alt="CTI Educacional" style="height: 80px;" class="mr-2">
+                <span class="text-dark font-weight-bold">CTI Educacional</span>
+            </a>
+            <a href="{{URL}}/certificado" class="text-primary small">Verificar certificado</a>
+        </div>
+    </header>
+
+    {{content}}
+
+    <footer class="container-fluid bg-dark text-white-50 py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1 small">Validação pública de certificados emitidos pelo CTI e escolas parceiras.</p>
+            <p class="mb-0 small"><a class="text-white-50" href="{{URL}}/">Voltar ao site CTI</a></p>
+        </div>
+    </footer>
+</body>
+</html>

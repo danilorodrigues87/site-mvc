@@ -7,10 +7,9 @@ require __DIR__.'/../vendor/autoload.php';
 
 use \App\Utils\View;
 use \App\Common\Environment;
-use \App\Model\Db\Database;
 use \App\Http\Middleware\Queue as MiddlewareQueue;
 
-//CARREGA VARIAVEIS DE AMBIENTE
+//CARREGA VARIAVEIS DE AMBIENTE (antes de qualquer classe que use Database)
 Environment::load(__DIR__.'/../');
 
 //DEFINE A CONSTANTE DE URL
@@ -21,7 +20,9 @@ define('TIMEZONE', getenv('TIMEZONE'));
 date_default_timezone_set(TIMEZONE);
 header('Content-Type: text/html; charset=utf-8');
 
-//DEFINE A CONSTANTE DE URL
+\App\Common\Helpers\SiteBrandingHelper::ensureBrandAssets();
+
+//TOKEN DE SISTEMA
 define('SYSTEM_TOKEN', getenv('SYSTEM_TOKEN'));
 
 //DEFINE O VALOR PADRÃO DAS VARIAVEIS

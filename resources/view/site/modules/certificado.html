@@ -1,136 +1,56 @@
-<style>
-    /* Garante que o efeito de borda apareça no rodapé da div */
-    .overlay-bottom {
-        position: relative;
-    }
-    .overlay-bottom::after {
-        content: ""; /* Necessário para o elemento existir */
-        position: absolute;
-        width: 100%;
-        height: 80px; /* Altura da imagem da borda; ajuste se necessário */
-        bottom: 0;
-        left: 0;
-        background: url('{{URL}}/resources/assets/img/overlay-bottom.png') bottom center no-repeat !important;
-        background-size: cover !important; /* Faz a borda esticar por toda a largura */
-        z-index: 1;
-    }
-</style>
-
-<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" 
-style="margin-bottom: 90px; 
-background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url('{{URL}}/resources/assets/img/page-header.jpg') no-repeat center center; 
-background-size: cover;">
-
-<div class="container text-center py-5">
-   <h1 class="text-white display-1">Certificado</h1>
-   <div class="d-inline-flex text-white mb-5">
-       <p class="m-0 text-uppercase"><a class="text-white" href="{{URL}}/">Home</a></p>
-       <i class="fa fa-angle-double-right pt-1 px-3"></i>
-       <p class="m-0 text-uppercase">Certificado</p>
-   </div>
-
-   <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-   </div>
-</div>
-</div>
-
-
-
-<div class="container-fluid bg-image" 
-style="margin: 90px 0; 
-background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url('{{URL}}/resources/assets/img/bg-image.jpg') center center no-repeat; 
-background-size: cover; 
-background-attachment: fixed;">
 <div class="container py-5">
-    <div class="row align-items-center">
-        <div class="col-lg-7">
-            <div class="bg-white p-4 p-md-5 shadow-sm" style="border-left: 8px solid #2878EB; border-top: 1px solid #dee2e6; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;">
-      
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="bg-white p-4 p-md-5 shadow-sm" style="border-left: 8px solid #2878EB;">
+                <div class="text-center mb-4">
+                    <i class="fa fa-certificate fa-3x text-primary mb-3"></i>
+                    <h1 class="h3 text-dark">Validação de certificado</h1>
+                </div>
+
                 <div class="section-title position-relative mb-4">
                     <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Certificamos que</h6>
-                    <h1 class="display-4 text-dark">{{aluno}}</h1>
+                    <h2 class="display-5 text-dark">{{aluno}}</h2>
                 </div>
 
                 <p class="lead text-body mb-4">
-    Concluiu com êxito o curso de <span class="text-primary font-weight-bold">{{curso}}</span>
-</p>
-<h5>Composto pelos módulos:</h5>
-                <p>{{modulos}}</p>
-                <p>cumprindo todas as exigências teóricas e práticas da nossa metodologia de ensino voltada para o mercado.
+                    Concluiu com êxito o curso de <span class="text-primary font-weight-bold">{{curso}}</span>
                 </p>
 
-                <div class="row pt-3 border-top">
+                <h5>Composto pelos módulos:</h5>
+                <p>{{modulos}}</p>
+
+                <div class="row pt-3 border-top mt-4">
                     <div class="col-sm-7">
                         <h6 class="text-uppercase text-muted small mb-1">Instituição</h6>
-                        <p class="font-weight-bold text-primary mb-0">Centro de Técnologia e Inovação Educacional - Guapiara/SP</p>
+                        <p class="font-weight-bold text-primary mb-0">Centro de Técnologia e Inovação Educacional</p>
                     </div>
                     <div class="col-sm-5 text-sm-right mt-3 mt-sm-0">
-                        <h6 class="text-uppercase text-muted small mb-1">Autenticidade</h6>
+                        <h6 class="text-uppercase text-muted small mb-1">Código de autenticidade</h6>
                         <code class="text-secondary">{{codigo}}</code>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-5 mt-5 mt-lg-0 pl-lg-5">
-            <div class="section-title position-relative mb-4">
-                <h2 class="text-dark">Sua conquista tem peso!</h2>
-            </div>
-
-            <div class="d-flex mb-4">
-                <div class="btn-icon bg-primary mr-4">
-                    <i class="fa fa-2x fa-graduation-cap text-white"></i>
+                <div class="text-center mt-4">
+                    <button onclick="compartilharCertificado('{{codigo}}')" class="btn btn-outline-primary">
+                        <i class="fa fa-share-alt mr-2"></i> Compartilhar
+                    </button>
                 </div>
-                <div class="mt-n1">
-                    <h4>Formação Prática</h4>
-                    <p class="m-0">Metodologia focada em habilidades reais para o mercado de trabalho.</p>
-                </div>
-            </div>
-
-            <div class="d-flex mb-4">
-                <div class="btn-icon bg-secondary mr-4">
-                    <i class="fa fa-2x fa-certificate text-white"></i>
-                </div>
-                <div class="mt-n1">
-                    <h4>Certificação de Peso</h4>
-                    <p class="m-0">Reconhecimento que valoriza seu currículo em todo o território nacional.</p>
-                </div>
-            </div>
-
-            <div class="d-flex mb-4">
-                <div class="btn-icon bg-warning mr-4">
-                    <i class="fa fa-2x fa-qrcode text-white"></i>
-                </div>
-                <div class="mt-n1">
-                    <h4>Validação Digital</h4>
-                    <p class="m-0">Segurança e transparência com consulta de autenticidade online.</p>
-                </div>
-            </div>
-
-            <div class="mt-4">
-                <button onclick="compartilharCertificado('{{codigo}}')" class="btn btn-outline-secondary btn-lg px-5 font-weight-bold">
-                    <i class="fa fa-share-alt mr-2"></i> COMPARTILHAR
-                </button>
             </div>
         </div>
     </div>
 </div>
-</div>
 
 <script>
-    function compartilharCertificado(codigo) {
-
-        if (navigator.share) {
-            navigator.share({
-                title: 'Meu Certificado - CTI Educacional',
-                text: 'Confira minha nova conquista no CTI Educacional!',
-            url: urlBase+'/certificado?crt='+codigo, // Aqui você trocará pelo link real do certificado
-        })
-            .then(() => console.log('Compartilhado com sucesso'))
-            .catch((error) => console.log('Erro ao compartilhar', error));
-        } else {
-        // Caso o navegador não suporte, abre o link em uma nova aba
-            window.open(urlBase+'/certificado?crt='+codigo, '_blank');
-        }
+function compartilharCertificado(codigo) {
+    var url = (document.body.getAttribute('data-base-url') || '') + '/certificado?crt=' + encodeURIComponent(codigo);
+    if (navigator.share) {
+        navigator.share({
+            title: 'Certificado — CTI Educacional',
+            text: 'Confira a validação deste certificado.',
+            url: url
+        }).catch(function(){});
+    } else {
+        window.open(url, '_blank');
     }
+}
 </script>

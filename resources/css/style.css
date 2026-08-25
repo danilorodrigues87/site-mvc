@@ -9808,6 +9808,31 @@ h6,
   z-index: 1;
 }
 
+.overlay-top::before {
+  top: 0;
+  background: url(../assets/img/overlay-top.png) top center no-repeat;
+  background-size: cover;
+}
+
+.overlay-bottom::after {
+  bottom: 0;
+  background: url(../assets/img/overlay-bottom.png) bottom center no-repeat;
+  background-size: cover;
+}
+
+.bg-image {
+  background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url(../assets/img/bg-image.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.jumbotron.page-header {
+  background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(../assets/img/page-header.jpg) center center no-repeat;
+  background-size: cover;
+}
+
 
 
 .section-title h6::before {

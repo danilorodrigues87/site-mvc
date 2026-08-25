@@ -1,382 +1,122 @@
-<style>
-    /* Garante que a "onda" no rodapé do cabeçalho principal apareça */
-    .overlay-bottom {
-        position: relative;
-    }
-    .overlay-bottom::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 80px; /* Ajuste conforme a altura da sua imagem de onda */
-        bottom: 0;
-        left: 0;
-        background: url('{{URL}}/resources/assets/img/overlay-bottom.png') bottom center no-repeat !important;
-        background-size: cover !important;
-        z-index: 1;
-    }
-</style>
-
-<div class="jumbotron jumbotron-fluid position-relative overlay-bottom" 
-     style="margin-bottom: 90px; 
-            background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url('{{URL}}/resources/assets/img/header.jpg') no-repeat center center; 
-            background-size: cover;">
-
+<!-- Hero B2B -->
+<div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px; min-height: 520px;
+background: linear-gradient(rgba(40, 120, 235, 0.88), rgba(40, 120, 235, 0.88)), url('{{hero_image_url}}') center center;
+background-size: cover;">
     <div class="container text-center my-5 py-5">
-        <h1 class="text-white mt-4 mb-4">Sua Formação Completa é Aqui</h1>
-        <h1 class="text-white display-1 mb-5">CTI Educacional</h1>
-        <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-            
+        <h1 class="text-white display-3 mb-4">{{hero_titulo}}</h1>
+        <p class="text-white lead mx-auto mb-5" style="max-width: 720px;">{{hero_subtitulo}}</p>
+        <a href="{{hero_cta_link}}" class="btn btn-light btn-lg px-5 font-weight-bold">{{hero_cta_texto}}</a>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="container-fluid py-5 bg-image">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <h1 class="display-4 text-primary">{{stat_escolas}}</h1>
+                <p class="text-muted text-uppercase font-weight-bold">Escolas parceiras</p>
+            </div>
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <h1 class="display-4 text-primary">{{stat_anos}}</h1>
+                <p class="text-muted text-uppercase font-weight-bold">Anos de experiência</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h1 class="display-4 text-primary">{{stat_modulos}}</h1>
+                <p class="text-muted text-uppercase font-weight-bold">Módulos na plataforma</p>
+            </div>
         </div>
     </div>
 </div>
-    <!-- Header End -->
 
-
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{URL}}/resources/assets/img/sobre.jpg" style="object-fit: cover;">
+<!-- Três frentes -->
+<div class="container-fluid py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center position-relative mb-5">
+            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">O que licenciamos</h6>
+            <h1 class="display-4">Ecossistema completo para sua escola</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="btn-icon bg-primary mb-3"><i class="fa fa-2x fa-school text-white"></i></div>
+                        <h4>Painel CTI</h4>
+                        <p class="text-muted">Gestão completa da sua escola: matrículas, financeiro, carnês com PIX, baixa automática e indicadores em tempo real.</p>
+                        <a href="{{URL}}/plataforma" class="small font-weight-bold text-primary">Ver diferenciais &rarr;</a>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">O CTI</h6>
-                        <h1 class="display-4">Quer saber um pouco mais sobre nossa escola</h1>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="btn-icon bg-secondary mb-3"><i class="fa fa-2x fa-laptop-code text-white"></i></div>
+                        <h4>Construtor interativo</h4>
+                        <p class="text-muted mb-0">Crie trilhas, aulas interativas, avaliações e certificados com verificação QR.</p>
                     </div>
-                    <p>No CTI você encontra cursos presenciais realizando atividades na pratica em nosso laboratorio de informática e cursos EAD, os quais você tem a opção de estudar no conforto da sua casa. Venha conhecer nossos cursos e se surpreenda com a variedade de cursos de diverças modalidades para alunos de todas as idades.</p>
-                    <div class="row pt-3 mx-0">
-                        <div class="col-3 px-0">
-                            <div class="bg-success text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">90</h1>
-                                <h6 class="text-uppercase text-white">Cursos<span class="d-block">Disponiveis</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-primary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1853</h1>
-                                <h6 class="text-uppercase text-white">Alunos<span class="d-block">Formados</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-secondary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">100</h1>
-                                <h6 class="text-uppercase text-white">% De<span class="d-block">Satisfação</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-warning text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">10</h1>
-                                <h6 class="text-uppercase text-white">Suporte<span class="d-block">Aluno</span></h6>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="btn-icon bg-warning mb-3"><i class="fa fa-2x fa-comments text-white"></i></div>
+                        <h4>Motor comercial</h4>
+                        <p class="text-muted">WhatsApp no painel, CRM em Kanban, campanhas de e-mail e agendamento de posts no Facebook e Instagram.</p>
+                        <a href="{{URL}}/solucoes/comercial" class="small font-weight-bold text-primary">Saiba mais &rarr;</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
-
-    <!-- Feature Start -->
-    <div class="container-fluid bg-image" 
-    style="margin: 90px 0; 
-           background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url('{{URL}}/resources/assets/img/bg-image.jpg') center center no-repeat; 
-           background-size: cover; 
-           background-attachment: fixed;">
-   
-   <div class="container">
-       <div class="row">
-           <div class="col-lg-7 my-5 pt-5 pb-lg-5">
-               <div class="section-title position-relative mb-4">
-                   <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">O que é o CTI?</h6>
-                   <h1 class="display-4">Por que começar a estudar conosco?</h1>
-               </div>
-               <p class="mb-4 pb-2">No CTI, oferecemos uma metodologia de ensino voltada para a prática, garantindo que você desenvolva as habilidades necessárias para se destacar. Combinamos infraestrutura moderna e suporte especializado para acompanhar cada etapa do seu aprendizado.</p>
-               
-               <div class="d-flex mb-3">
-                   <div class="btn-icon bg-primary mr-4">
-                       <i class="fa fa-2x fa-graduation-cap text-white"></i>
-                   </div>
-                   <div class="mt-n1">
-                       <h4>Instrutores Especializados</h4>
-                       <p>Contamos com profissionais experientes e atuantes no mercado, prontos para transmitir conhecimentos práticos e tirar todas as suas dúvidas.</p>
-                   </div>
-               </div>
-
-               <div class="d-flex mb-3">
-                   <div class="btn-icon bg-secondary mr-4">
-                       <i class="fa fa-2x fa-certificate text-white"></i>
-                   </div>
-                   <div class="mt-n1">
-                       <h4>Certificação de Peso</h4>
-                       <p>Nossos certificados são amplamente reconhecidos, valorizando seu currículo e comprovando sua competência técnica em todo o território nacional.</p>
-                   </div>
-               </div>
-
-               <div class="d-flex">
-                   <div class="btn-icon bg-warning mr-4">
-                       <i class="fa fa-2x fa-book-reader text-white"></i>
-                   </div>
-                   <div class="mt-n1">
-                       <h4>Método Presencial e Online</h4>
-                       <p class="m-0">Nosso método adapta-se ao seu dia a dia. Você pode realizar atividades práticas presenciais com nossos instrutores ou acessar conteúdos exclusivos e suporte pedagógico de onde estiver, através da nossa plataforma online.</p>
-                   </div>
-               </div>
-           </div>
-
-           <div class="col-lg-5" style="min-height: 500px;">
-               <div class="position-relative h-100">
-                   <img class="position-absolute w-100 h-100" src="{{URL}}/resources/assets/img/aluna.jpg" style="object-fit: cover;">
-               </div>
-           </div>
-       </div>
-   </div>
 </div>
-   <!-- Feature end -->
 
-    <!-- Courses Start -->
-    <div class="container-fluid px-0 py-5">
-        <div class="row mx-0 justify-content-center pt-5">
+<!-- Catálogo CTI teaser -->
+<div class="container-fluid py-5 bg-image">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h6 class="text-secondary text-uppercase">Conteúdo incluído na licença</h6>
+                <h2 class="display-5 mb-3">Catálogo CTI {{catalogo_badge}}</h2>
+                <p class="lead text-muted">Cursos padrão de <strong>informática</strong> e <strong>tecnologias básicas</strong> para acelerar a operação da sua escola — além da liberdade de criar cursos próprios no construtor.</p>
+                <ul class="list-unstyled text-muted mb-4">
+                    <li class="mb-2"><i class="fa fa-check text-primary mr-2"></i>Informática básica</li>
+                    <li class="mb-2"><i class="fa fa-check text-primary mr-2"></i>Pacote Office e produtividade</li>
+                    <li class="mb-2"><i class="fa fa-check text-primary mr-2"></i>Internet, segurança e cidadania digital</li>
+                    <li class="mb-2"><i class="fa fa-check text-primary mr-2"></i>Tecnologias digitais essenciais</li>
+                </ul>
+                <a href="{{URL}}/solucoes/catalogo-cti" class="btn btn-outline-primary btn-lg">Saiba mais sobre o catálogo</a>
+            </div>
             <div class="col-lg-6">
-                <div class="section-title text-center position-relative mb-4">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Nossos Cursos</h6>
-                    <h1 class="display-4">Confira Alguns de Nossos Cursos</h1>
-                </div>
-            </div>
-        </div>
-        <div class="owl-carousel courses-carousel">
-
-            {{itens}}      
-          
-        </div>
-
-        <div class="row justify-content-center bg-image mx-0 mb-5" style="margin: 90px 0; 
-        background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url('{{URL}}/resources/assets/img/bg-image.jpg') center center no-repeat; 
-        background-size: cover; 
-        background-attachment: fixed;">
-            <div class="col-lg-6 py-5">
-                <div class="bg-white p-5 my-5">
-                    <h1 class="text-center mb-4">30% de Desconto para Novos Alunos</h1>
-                    <form id="pega_lead" method="post">
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" id="ld_nome" name="nome" class="form-control bg-light border-0" placeholder="Seu nome" style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" id="ld_email" name="email" class="form-control bg-light border-0" placeholder="Seu Email" style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <select id="ld_curso" name="curso_pretendido" class="custom-select bg-light border-0 px-3" style="height: 60px;">
-                                        <option value="" >Escolha um Curso</option>
-                                        {{select-cursos}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <select id="ld_ex_aluno" name="ex_aluno" class="custom-select bg-light border-0 px-3" style="height: 60px;">
-                                        <option value="" >Já estudou aqui?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="0">Não</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input id="ld_whatsapp" type="text" name="whatsapp" class="form-control bg-light border-0" placeholder="Whatsapp" style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                        <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">Garantir Minha Vaga</button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="bg-primary text-white p-5 rounded shadow">
+                    <h4 class="text-white mb-3">Plataforma + conteúdo + autonomia</h4>
+                    <p class="mb-0">Não vendemos só software: entregamos a operação pedagógica com trilhas CTI em expansão e ferramentas para a escola customizar o que precisar.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Courses End -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative mb-5">
-                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">O Time do sucesso</h6>
-                <h1 class="display-4">Nossa Equipe</h1>
-            </div>
-            <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/danilo-foto.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Danilo Rodrigues</h5>
-                        <p class="mb-2">Desenvolvedor Full-Steck</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/danilorodrigues.87"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.linkedin.com/in/danilorods87/"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/danilorod87/"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.youtube.com/@danilorodrigues87"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/lucieli-foto.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Lucieli Ribeiro Rodrigues</h5>
-                        <p class="mb-2">Financeiro</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/Lucieli.ribe"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/lucieliribeirords/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{{URL}}/resources/assets/img/donna-foto.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Donna - Assistente IA</h5>
-                        <p class="mb-2">Comercial</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" target="_blank" href="https://www.facebook.com/ctieducacional/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.instagram.com/ctieducacional/"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" target="_blank" href="https://www.youtube.com/@ctieducacional"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid bg-image py-5" 
-    style="margin: 90px 0; 
-           background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url('{{URL}}/resources/assets/img/bg-image.jpg') center center no-repeat; 
-           background-size: cover; 
-           background-attachment: fixed;">
-   
-   <div class="container py-5">
-       <div class="row align-items-center">
-           <div class="col-lg-5 mb-5 mb-lg-0">
-               <div class="section-title position-relative mb-4">
-                   <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Depoimentos</h6>
-                   <h1 class="display-4">O que os alunos dizem</h1>
-               </div>
-               <p class="m-0">"A melhor forma de conhecer a qualidade do nosso ensino é através das histórias de quem transformou sua carreira conosco. Confira o depoimento de alguns dos nossos mais de 1.800 alunos formados."</p>
-           </div>
-           <div class="col-lg-7">
-               <div class="owl-carousel testimonial-carousel">
-                   <div class="bg-white p-5">
-                       <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                       <p>"Mudar de carreira parecia impossível, mas o método do CTI facilitou tudo. As aulas práticas no laboratório me deram a confiança que eu precisava. Hoje já estou trabalhando na área de tecnologia e aplicando tudo o que aprendi!"</p>
-                       <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                           <img class="img-fluid mr-4" src="{{URL}}/resources/assets/img/testimonial-2.jpg" alt="" style="width: 60px; height: 60px;">
-                           <div>
-                               <h5>Lucas Almeida</h5>
-                               <span>Web Design</span>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="bg-white p-5">
-                       <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                       <p>"A flexibilidade do curso online foi o diferencial para mim. Consigo estudar no meu tempo e, sempre que tenho dúvidas, o suporte pedagógico é excelente. O CTI superou minhas expectativas com um conteúdo muito atualizado."</p>
-                       <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                           <img class="img-fluid mr-4" src="{{URL}}/resources/assets/img/testimonial-1.jpg" alt="" style="width: 60px; height: 60px;">
-                           <div>
-                               <h5>Mariana Costa</h5>
-                               <span>Marketing e Vendas</span>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
 </div>
-    <!-- Testimonial Start -->
 
-
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-primary mr-4">
-                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Endereço</h4>
-                                <p class="m-0">Rua Dep. Cunha Bueno, 78 A Centro - Guapiara-SP</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-secondary mr-4">
-                                <i class="fa fa-2x fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Whatsapp</h4>
-                                <p class="m-0">(15) 99671-2314</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-icon bg-warning mr-4">
-                                <i class="fa fa-2x fa-envelope text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Nosso Email</h4>
-                                <p class="m-0">contato@ctieducacional.com.br</p>
-                            </div>
-                        </div>
-                    </div>
+<!-- CTA final -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row no-gutters align-items-stretch shadow-lg rounded overflow-hidden">
+            <div class="col-lg-7 bg-image d-flex align-items-center">
+                <div class="p-5 p-lg-5">
+                    <h6 class="text-primary text-uppercase font-weight-bold mb-2">Próximo passo</h6>
+                    <h2 class="display-5 mb-3">Sua escola pronta para crescer com método</h2>
+                    <p class="lead text-muted mb-0">Agende uma conversa com nosso time comercial. Mostramos o painel, o construtor de cursos e como o catálogo CTI acelera a operação da sua escola.</p>
                 </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Precisa de Ajuda?</h6>
-                        <h1 class="display-4">Nos Envie uma Mensagem</h1>
-                    </div>
-                    <div class="contact-form">
-                        <form id="contato-home" method="post">
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text" id="c_nome" name="c_nome" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu nome" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="email" id="c_email" name="c_email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Email" required="required">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text" id="c_whatsapp" name="c_whatsapp" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Seu Whatsapp" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="text" id="assunto" name="assunto" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Assunto" required="required">
-                                </div>
-                            </div>
- 
-                            <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" id="mensagem" name="mensagem" placeholder="Mensagem" required="required"></textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
-                            </div>
-                        </form>
-                    </div>
+            </div>
+            <div class="col-lg-5 bg-primary text-white p-5 d-flex flex-column justify-content-center text-center text-lg-left">
+                <h4 class="text-white mb-3">Fale com o CTI</h4>
+                <p class="text-white-50 mb-4">Demonstração personalizada, sem compromisso.</p>
+                <div class="d-flex flex-column flex-sm-row flex-lg-column align-items-center align-items-lg-start">
+                    <a href="{{URL}}/contato" class="btn btn-light btn-lg px-4 mb-3 mr-sm-3 mr-lg-0 font-weight-bold">Solicitar demonstração</a>
+                    <a href="{{whatsapp_link}}" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-<script src="{{URL}}/resources/js/ajax/home.js"></script>
+</div>

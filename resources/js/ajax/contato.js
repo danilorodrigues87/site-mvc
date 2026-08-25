@@ -33,6 +33,7 @@ $(document).on("submit", "#contato-contact", function(event) {
              document.getElementById('c_nome').value = '';
              document.getElementById('c_email').value = '';
              document.getElementById('c_whatsapp').value = '';
+             if (document.getElementById('c_escola')) document.getElementById('c_escola').value = '';
              document.getElementById('assunto').value = '';
              document.getElementById('mensagem').value = '';
 
