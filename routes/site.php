@@ -4,6 +4,8 @@
 
 include __DIR__.'/site/home.php';
 
+include __DIR__.'/site/seo.php';
+
 include __DIR__.'/site/catalogo-cti.php';
 
 include __DIR__.'/site/solucoes.php';

@@ -2,6 +2,7 @@
 namespace App\Controller\Site;
 use \App\Utils\View;
 use \App\Common\Helpers\SiteBrandingHelper;
+use \App\Common\Helpers\SeoHelper;
 
 class Page {
 
@@ -67,13 +68,14 @@ class Page {
 		return SiteBrandingHelper::viewVars();
 	}
 
-	public static function getPage($title, $content, $metaTitle = null, $metaDescription = null){
+	public static function getPage($title, $content, $metaTitle = null, $metaDescription = null, $canonicalPath = '/'){
 		$branding = SiteBrandingHelper::viewVars();
-		return View::render('site/page', array_merge($branding, [
+		$titleFinal = $metaTitle ?: strip_tags((string)SiteBrandingHelper::get()['metaTitle']);
+		$descFinal = $metaDescription ?: strip_tags((string)SiteBrandingHelper::get()['metaDescription']);
+		$seo = SeoHelper::pageVars($titleFinal, $descFinal, $canonicalPath, SiteBrandingHelper::get());
+		return View::render('site/page', array_merge($branding, $seo, [
 			'title' => $title,
 			'content' => $content,
-			'meta_title' => $metaTitle ?: $branding['meta_title'],
-			'meta_description' => $metaDescription ?: $branding['meta_description'],
 		]));
 	}
 
@@ -82,7 +84,8 @@ class Page {
 			'menu' => self::getMenu($currentModule),
 			'content' => $content
 		]);
-		return self::getPage($title, $contentPanel, $metaTitle, $metaDescription);
+		$canonicalPath = SeoHelper::canonicalPathForModule($currentModule);
+		return self::getPage($title, $contentPanel, $metaTitle, $metaDescription, $canonicalPath);
 	}
 
 	public static function getCertPage($title, $content){
