@@ -1,8 +1,8 @@
-# Rotas amigáveis — encaminha tudo para index.php (exceto arquivos/pastas reais)
+# Rotas amigáveis — funciona na raiz (produção) e em subpasta (localhost/pjt/site-mvc)
+# Não use RewriteBase / — quebra quando o site não está na raiz do domínio.
 <IfModule mod_rewrite.c>
     Options -MultiViews
     RewriteEngine On
-    RewriteBase /
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

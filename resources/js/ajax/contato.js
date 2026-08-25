@@ -1,45 +1,69 @@
 
-    // FUNÇÃO QUE EXECUTA UM CREATE OU UPDATE DE DADOS
-$(document).on("submit", "#contato-contact", function(event) {
-        event.preventDefault(); // Evita o envio do formulário de forma tradicional
+(function () {
+    function getBaseUrl() {
+        if (typeof window.urlBase === 'string' && window.urlBase !== '') {
+            return window.urlBase.replace(/\/$/, '');
+        }
+        var el = document.body;
+        return el ? (el.getAttribute('data-base-url') || '').replace(/\/$/, '') : '';
+    }
+
+    $(document).on('submit', '#contato-contact', function (event) {
+        event.preventDefault();
+
+        var base = getBaseUrl();
+        if (!base) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Configuração incompleta',
+                text: 'URL do site não definida. Contate o suporte.',
+                confirmButtonText: 'Ok'
+            });
+            return;
+        }
+
+        var $form = $(this);
+        var $btn = $form.find('button[type="submit"]').prop('disabled', true);
 
         $.ajax({
-            url: urlBase+'/contato/envia-mensagem',
-            type: "POST",
-            //dataType: "json", // Espera que o servidor retorne um JSON
-            data: $(this).serialize(), // Serializa os dados do formulário
-            success: function(response) {
-
-             if (response) {
-          
-                Swal.fire({
-                    title: 'Mensagem enviada com sucesso!',
-                    text: 'Obrigado, entraremos em contato em breve.',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                });
-
-            } else {
-    
+            url: base + '/contato/envia-mensagem',
+            type: 'POST',
+            data: $form.serialize(),
+            dataType: 'json',
+            success: function (response) {
+                $btn.prop('disabled', false);
+                if (response && response.success) {
+                    Swal.fire({
+                        title: 'Mensagem enviada com sucesso!',
+                        text: 'Obrigado, entraremos em contato em breve.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    });
+                    $form[0].reset();
+                    return;
+                }
                 Swal.fire({
                     icon: 'error',
                     title: 'Ops! Algo deu errado',
-                    text: 'Não foi possível enviar sua mensagem, tente novamente mais tarde.',
+                    text: (response && response.message) || 'Não foi possível enviar sua mensagem. Tente novamente mais tarde.',
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#d33'
+                });
+            },
+            error: function (xhr) {
+                $btn.prop('disabled', false);
+                var msg = 'Não foi possível enviar sua mensagem. Tente novamente mais tarde.';
+                if (xhr.status === 404) {
+                    msg = 'Serviço de contato não encontrado (404). Verifique a configuração do servidor.';
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops! Algo deu errado',
+                    text: msg,
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#d33'
                 });
             }
-
-             document.getElementById('c_nome').value = '';
-             document.getElementById('c_email').value = '';
-             document.getElementById('c_whatsapp').value = '';
-             if (document.getElementById('c_escola')) document.getElementById('c_escola').value = '';
-             document.getElementById('assunto').value = '';
-             document.getElementById('mensagem').value = '';
-
-
-        }
-
+        });
     });
-
-    });
+})();

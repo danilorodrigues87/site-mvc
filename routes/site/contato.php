@@ -21,7 +21,7 @@ $obRouter->post('/contato/envia-mensagem',[
 		
 	],
 	function($request){
-		return new Response(200,Site\Contact::enviaMensagem($request));
+		return new Response(200, Site\Contact::enviaMensagem($request), 'application/json');
 	}
 ]);
 

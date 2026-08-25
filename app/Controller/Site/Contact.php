@@ -5,6 +5,7 @@ use \App\Model\Entity\Leads;
 use \App\Common\Communication\Email;
 use \App\Common\Helpers\NumeroHelper;
 use \App\Common\Helpers\SiteBrandingHelper;
+use \App\Common\Environment;
 
 class Contact extends Page {
 
@@ -24,17 +25,22 @@ class Contact extends Page {
 		$assunto = filter_var($postVars['assunto'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 		$mensagem = filter_var($postVars['mensagem'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$leads = new Leads;
-		$leads->nome = $nome;
-		$leads->email = $email;
-		$leads->whatsapp = $whatsapp;
-		$leads->origem = 'Lead B2B Site';
-
-		if(!$leads){
-			return false;
+		if ($nome === '' || $email === '' || $assunto === '' || $mensagem === '') {
+			return ['success' => false, 'message' => 'Preencha todos os campos obrigatórios.'];
 		}
 
-		$leads->prospectar();
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			return ['success' => false, 'message' => 'E-mail inválido.'];
+		}
+
+		if (self::dbConfigured()) {
+			$leads = new Leads;
+			$leads->nome = $nome;
+			$leads->email = $email;
+			$leads->whatsapp = $whatsapp;
+			$leads->origem = 'Lead B2B Site';
+			@$leads->prospectar();
+		}
 
 		$whatsappFmt = NumeroHelper::formatarTelefone($whatsapp);
 		$address = 'leads@ctieducacional.com.br';
@@ -47,9 +53,29 @@ class Contact extends Page {
 		$body .= '<p><b>Mensagem:</b><br>'.nl2br($mensagem).'</p>';
 		$body .= '<p><b>WhatsApp:</b> '.$whatsappFmt.'<br><b>E-mail:</b> '.$email.'</p>';
 
+		$smtpHost = trim((string)Environment::get('SMTP_HOST', ''));
+		if ($smtpHost === '') {
+			return [
+				'success' => true,
+				'message' => 'Mensagem registrada. Retornaremos em breve.',
+			];
+		}
+
 		$obEmail = new Email;
 		$res = $obEmail->sendEmail($address, $subject, $body, $fromName);
-		return $res ? true : $obEmail->getError;
+		if ($res) {
+			return ['success' => true, 'message' => 'Mensagem enviada com sucesso.'];
+		}
+		return [
+			'success' => false,
+			'message' => $obEmail->getError() ?: 'Falha ao enviar e-mail.',
+		];
+	}
+
+	private static function dbConfigured(): bool {
+		$user = Environment::get('DB_USER');
+		$name = Environment::get('DB_NAME');
+		return is_string($user) && $user !== '' && is_string($name) && $name !== '';
 	}
 
 	public static function assinarNews($request){
