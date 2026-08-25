@@ -1,5 +1,5 @@
 .env
 /vendor/
 .cursor/
-
+resources/assets/img/*
 *.log
