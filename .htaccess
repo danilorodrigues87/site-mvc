@@ -1,9 +1,13 @@
-# LIGA O REWRITE
-RewriteEngine on
+# Rotas amigáveis — encaminha tudo para index.php (exceto arquivos/pastas reais)
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+    RewriteBase /
 
-# REGRA DE REWRITE TUDO PARA INDEX
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ ./index.php [QSA,NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php81” package as the default “PHP” programming language.
