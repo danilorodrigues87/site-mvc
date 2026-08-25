@@ -40,8 +40,7 @@ class Database{
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); // Configuração opcional para o modo de busca padrão
     }catch(PDOException $e){
-        //SUBSTITUIR POR MENSAGEM AMIGÁVEL
-        die('ERROR: '.$e->getMessage());
+        throw $e;
     }
 }
 
@@ -52,8 +51,7 @@ class Database{
             $statement->execute($params);
             return $statement;
         }catch(PDOException $e){
-            //SUBSTITUIR POR MENSAGEM AMIGAVEL
-            die('ERROR: '.$e->getMessage());
+            throw $e;
         }
     }
 

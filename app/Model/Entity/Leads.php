@@ -29,18 +29,33 @@ class Leads{
 
 	//ENVIA A MENSAGEM PARA O BANCO
 	public function prospectar(){
-		
-		//INSERIR OS DADOS PARA O BANCO DE DADOS
+		$data = [
+			'nome'   => $this->nome ?? null,
+			'email'  => $this->email ?? null,
+			'origem' => $this->origem ?? null,
+		];
+
+		if (isset($this->whatsapp) && $this->whatsapp !== '') {
+			$data['whatsapp'] = $this->whatsapp;
+		}
+		if (isset($this->curso_pretendido) && $this->curso_pretendido !== '') {
+			$data['curso_pretendido'] = $this->curso_pretendido;
+		}
+		if (isset($this->ex_aluno) && $this->ex_aluno !== '') {
+			$data['ex_aluno'] = $this->ex_aluno;
+		}
+
+		$data = array_filter($data, static function ($value) {
+			return $value !== null && $value !== '';
+		});
+
+		if (empty($data['email'])) {
+			return false;
+		}
+
 		$obDatabase = new Database('leads');
-		$this->id = $obDatabase->insert([
-			'nome' => $this->nome,
-			'email' => $this->email,
-			'whatsapp' => $this->whatsapp,
-			'curso_pretendido' => $this->curso_pretendido,
-			'ex_aluno' => $this->ex_aluno,
-			'origem' => $this->origem
-		]);
-		
+		$this->id = $obDatabase->insert($data);
+
 		return true;
 	} 
 

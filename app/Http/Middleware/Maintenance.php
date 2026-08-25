@@ -8,7 +8,7 @@ class Maintenance{
 	public function handle($request, $next){
 
 		//VERIFICA O ESTADO DE MANUTENÇÃO DA PÁGINA
-		if(getenv('MAINTENANCE') == 'true'){
+		if(Environment::get('MAINTENANCE') == 'true'){
 			throw new \Exception('Página em manutenção, tem outra vez mais tarde.', 200);
 		}
 

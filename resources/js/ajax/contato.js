@@ -55,6 +55,19 @@
                 var msg = 'Não foi possível enviar sua mensagem. Tente novamente mais tarde.';
                 if (xhr.status === 404) {
                     msg = 'Serviço de contato não encontrado (404). Verifique a configuração do servidor.';
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                    msg = xhr.responseJSON.message;
+                } else if (xhr.responseText) {
+                    try {
+                        var parsed = JSON.parse(xhr.responseText);
+                        if (parsed && parsed.message) {
+                            msg = parsed.message;
+                        }
+                    } catch (e) {
+                        if (xhr.responseText.indexOf('ERROR:') === 0) {
+                            msg = 'Erro interno ao processar o formulário. O e-mail pode não ter sido enviado.';
+                        }
+                    }
                 }
                 Swal.fire({
                     icon: 'error',
