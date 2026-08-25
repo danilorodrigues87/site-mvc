@@ -34,8 +34,8 @@
                 $btn.prop('disabled', false);
                 if (response && response.success) {
                     Swal.fire({
-                        title: 'Mensagem enviada com sucesso!',
-                        text: 'Obrigado, entraremos em contato em breve.',
+                        title: 'Mensagem enviada!',
+                        text: (response && response.message) || 'Obrigado. Nossa equipe responderá no e-mail que você informou.',
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     });

@@ -16,7 +16,6 @@ class Contact extends Page {
 
 	public static function enviaMensagem($request){
 		$postVars = $request->getPostVars();
-		$fromName = 'CONTATO SITE CTI B2B';
 
 		$nome = filter_var($postVars['c_nome'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 		$escola = filter_var($postVars['c_escola'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -43,28 +42,33 @@ class Contact extends Page {
 		}
 
 		$whatsappFmt = NumeroHelper::formatarTelefone($whatsapp);
-		$address = 'leads@ctieducacional.com.br';
-		$subject = 'Lead B2B: '.$assunto;
+		$to = trim((string)Environment::get('CONTACT_TO_EMAIL', ''));
+		if ($to === '' || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
+			$to = 'contato@ctieducacional.com.br';
+		}
+		$subject = 'Lead B2B site: '.$assunto;
 		$body = '<p><b>'.$nome.'</b> enviou mensagem pelo site B2B.</p>';
 		if ($escola !== '') {
 			$body .= '<p><b>Escola:</b> '.$escola.'</p>';
 		}
 		$body .= '<p><b>Assunto:</b> '.$assunto.'</p>';
 		$body .= '<p><b>Mensagem:</b><br>'.nl2br($mensagem).'</p>';
-		$body .= '<p><b>WhatsApp:</b> '.$whatsappFmt.'<br><b>E-mail:</b> '.$email.'</p>';
+		$body .= '<p><b>WhatsApp:</b> '.$whatsappFmt.'<br><b>E-mail para resposta:</b> '.$email.'</p>';
 
-		$smtpHost = trim((string)Environment::get('SMTP_HOST', ''));
-		if ($smtpHost === '') {
+		$obEmail = new Email;
+		if (!$obEmail->isConfigured()) {
 			return [
-				'success' => true,
-				'message' => 'Mensagem registrada. Retornaremos em breve.',
+				'success' => false,
+				'message' => 'Envio de e-mail não configurado no servidor. Configure SMTP no .env.',
 			];
 		}
 
-		$obEmail = new Email;
-		$res = $obEmail->sendEmail($address, $subject, $body, $fromName);
+		$res = $obEmail->sendEmail($to, $subject, $body, null, [], [], [], $email);
 		if ($res) {
-			return ['success' => true, 'message' => 'Mensagem enviada com sucesso.'];
+			return [
+				'success' => true,
+				'message' => 'Mensagem enviada. Nossa equipe responderá no e-mail que você informou.',
+			];
 		}
 		return [
 			'success' => false,

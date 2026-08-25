@@ -25,7 +25,15 @@ class Environment {
 			// Separa chave e valor
 			if(strpos($line, '=') !== false) {
 				list($key, $value) = explode('=', $line, 2);
-				putenv(trim($key).'='.trim($value));
+				$key = trim($key);
+				$value = trim($value);
+				if ($value !== '' && (
+					($value[0] === '"' && substr($value, -1) === '"')
+					|| ($value[0] === "'" && substr($value, -1) === "'")
+				)) {
+					$value = substr($value, 1, -1);
+				}
+				putenv($key.'='.$value);
 			}
 		}
 	}
